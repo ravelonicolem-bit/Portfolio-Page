@@ -1,0 +1,212 @@
+@import "tailwindcss";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+:root {
+  --brand: #6b4f95;
+  --brand-dark: #121212;
+  --brand-soft: #ebe4f5;
+  --cream: #f7f4ef;
+  --cream-deep: #efeae3;
+  --ink: #121212;
+  --muted: #5c5668;
+  --line: #e2dcd4;
+  --surface: #f1ece5;
+  --card: #fffcf8;
+  --card-shadow: 0 4px 18px rgba(18, 18, 18, 0.06);
+  --radius: 12px;
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-soft: var(--brand-soft);
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --font-sans: var(--font-source-sans);
+  --font-serif: var(--font-source-serif);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-source-sans), "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-source-serif), Georgia, serif;
+}
+
+a {
+  color: var(--brand);
+}
+
+.container-site {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+}
+
+.kicker {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--brand);
+  font-family: var(--font-source-sans), "Segoe UI", sans-serif;
+}
+
+.btn-brand {
+  @apply inline-flex items-center justify-center rounded-lg px-[1.1rem] py-[0.6rem] text-sm font-semibold transition;
+  background: var(--brand);
+  color: var(--cream);
+}
+
+.btn-brand:hover {
+  background: var(--brand-dark);
+  color: var(--cream);
+}
+
+.btn-outline-brand {
+  @apply inline-flex items-center justify-center rounded-lg border px-[1.1rem] py-[0.6rem] text-sm font-semibold transition;
+  border-color: var(--brand);
+  color: var(--brand);
+  background: transparent;
+}
+
+.btn-outline-brand:hover {
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  border-color: var(--brand-dark);
+}
+
+.btn-sm {
+  @apply px-3 py-1.5 text-xs;
+}
+
+.info-card,
+.stat-card,
+.service-card,
+.skill-card,
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+}
+
+.service-card,
+.skill-card,
+.project-card,
+.stat-card {
+  height: 100%;
+}
+
+.service-card,
+.skill-card,
+.project-card {
+  padding: 1.4rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.service-card:hover,
+.skill-card:hover,
+.project-card:hover {
+  border-color: #d4cce0;
+  box-shadow: 0 8px 24px rgba(18, 18, 18, 0.08);
+}
+
+.project-card.project-card-media {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--brand-soft);
+  color: var(--brand);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.26rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0.2rem 0.2rem 0 0;
+}
+
+.skill-chip-sample {
+  background: #ebe4f5;
+  border-color: #cfc3e6;
+  color: #4a3870;
+}
+
+.cta-band {
+  background: var(--brand-dark);
+  color: var(--cream);
+  border-radius: 16px;
+  padding: 2.25rem;
+  border: 1px solid #3a2a20;
+}
+
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.availability-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5a8f4a;
+  box-shadow: 0 0 0 3px rgba(90, 143, 74, 0.18);
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--brand);
+  color: var(--cream);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-source-sans), sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
