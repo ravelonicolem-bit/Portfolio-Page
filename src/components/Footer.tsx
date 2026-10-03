@@ -71,7 +71,6 @@ export function Footer() {
           <span>
             &copy; {year} {profile.fullName}. All rights reserved.
           </span>
-          <span>Portfolio for employment applications</span>
         </div>
       </div>
     </footer>
