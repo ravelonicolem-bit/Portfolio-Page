@@ -24,6 +24,6 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/about` About & experience
 - `/skills` Skills
 - `/services` Capabilities
-- `/projects` Projects & practice samples
+- `/projects` Projects
 - `/resume` Resume preview
 - `/contact` Contact

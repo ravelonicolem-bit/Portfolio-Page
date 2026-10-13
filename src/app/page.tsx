@@ -195,15 +195,14 @@ export default function HomePage() {
           <div className="mb-4 flex items-end justify-between gap-4">
             <div>
               <p className="kicker">Selected work</p>
-              <h2 className="m-0 font-serif text-3xl font-bold tracking-tight">Projects and practice samples</h2>
+              <h2 className="m-0 font-serif text-3xl font-bold tracking-tight">Projects</h2>
             </div>
             <Link href="/projects" className="btn-outline-brand hidden no-underline md:inline-flex">
               All projects
             </Link>
           </div>
           <p className="mb-8 max-w-3xl text-muted">
-            Featured items from Excel/admin samples, website work, and design. Practice samples are clearly labeled on
-            the Projects page.
+            Featured items from Excel/admin samples, website work, and design.
           </p>
           <div className="grid gap-4 md:grid-cols-3">
             {projects.map((project) => (

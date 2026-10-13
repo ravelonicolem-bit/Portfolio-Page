@@ -207,53 +207,6 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-export const sampleProjectIdeas: Project[] = [
-  {
-    icon: "bi-table",
-    title: "Data Entry Tracker",
-    category: "Practice Sample",
-    type: "practice",
-    image: "/images/projects/Data Entry.png",
-    summary:
-      "Practice spreadsheet showing structured encoding fields, status tracking, and clean formatting for administrative records.",
-    outcome: "Illustrates how I organize source data before verification and submission.",
-    skills: ["Data Entry", "Excel", "Google Sheets", "Accuracy"],
-  },
-  {
-    icon: "bi-person-vcard",
-    title: "Applicant Tracking Sheet",
-    category: "Practice Sample",
-    type: "practice",
-    image: "/images/projects/Email.jpg",
-    summary:
-      "Practice recruitment tracker for applicant names, stages, interview dates, and follow-up notes.",
-    outcome: "Shows how I would support HR/recruitment assistants with organized candidate logs.",
-    skills: ["Applicant Tracking", "Documentation", "Organization"],
-  },
-  {
-    icon: "bi-calendar3",
-    title: "Task & Schedule Board",
-    category: "Practice Sample",
-    type: "practice",
-    image: "/images/projects/Calendar.png",
-    summary:
-      "Practice virtual assistance sample for weekly schedules, meeting blocks, and assigned task monitoring.",
-    outcome: "Demonstrates clear coordination support for office and remote admin workflows.",
-    skills: ["Scheduling", "Task Tracking", "Virtual Assistance"],
-  },
-  {
-    icon: "bi-folder-check",
-    title: "Employee Records Index",
-    category: "Practice Sample",
-    type: "practice",
-    image: "/images/projects/Document.jpg",
-    summary:
-      "Practice filing structure and naming convention for active, previous, and supporting employee documents.",
-    outcome: "Shows a confidential, easy-to-retrieve approach to HR/admin document organization.",
-    skills: ["Records Management", "File Organization", "Confidentiality"],
-  },
-];
-
 export const projectSections: ProjectSection[] = [
   {
     key: "excel-sheets",
