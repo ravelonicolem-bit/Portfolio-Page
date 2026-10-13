@@ -1,139 +1,95 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { featuredProjects, services } from "@/data/catalog";
+import { ProjectCard } from "@/components/ProjectCard";
+import { ServiceCard } from "@/components/ServiceCard";
+import { experiences, featuredProjects, services } from "@/data/catalog";
 import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
   title: "Home",
 };
 
-const stats = [
-  { value: "ERP", label: "Data encoding experience" },
-  { value: "BS IT", label: "Information Technology" },
-  { value: "7+", label: "Target support roles" },
-  { value: "GMT+8", label: "Available to start soon" },
+const highlights = [
+  ["bi-keyboard", "Data Encoding", "ERP and spreadsheet encoding with careful verification"],
+  ["bi-folder2-open", "Records Management", "Organized documentation and structured filing"],
+  ["bi-people", "HR / Recruitment Support", "Applicant tracking and confidential file handling"],
+  ["bi-laptop", "Virtual Assistance", "Remote admin support, scheduling, and task follow-through"],
 ] as const;
-
-const homeServices = services.slice(0, 4);
 
 export default function HomePage() {
   const projects = featuredProjects();
 
   return (
     <>
-      <section className="relative min-h-[calc(100vh-4.25rem)] overflow-hidden border-b border-line">
-        <div className="grid min-h-[calc(100vh-4.25rem)] lg:grid-cols-2">
-          <div className="topo-pattern relative flex items-center px-6 py-16 sm:px-10 lg:px-14 xl:px-20">
-            <div className="max-w-xl">
-              <p className="kicker kicker-rule fade-up mb-8">Accuracy, crafted with intention.</p>
-              <h1 className="fade-up-delay font-serif text-4xl leading-[1.05] font-medium tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
-                Administrative support that elevates{" "}
-                <em className="not-italic text-[var(--accent-italic)] italic">work.</em>
+      <section className="border-b border-line bg-gradient-to-b from-cream-deep to-cream pt-[4.25rem] pb-[3.25rem]">
+        <div className="container-site">
+          <div className="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
+            <div>
+              <span className="availability-badge mb-3">
+                <span className="dot" />
+                {profile.availabilityBadge}
+              </span>
+              <p className="kicker mt-3">Professional portfolio</p>
+              <h1 className="mt-2 font-serif text-4xl font-bold tracking-tight text-ink md:text-5xl">
+                {profile.fullName}
               </h1>
-              <p className="fade-up-delay-2 mt-6 max-w-md text-sm leading-relaxed text-muted sm:text-base">
-                {profile.shortDescription}
-              </p>
-              <div className="fade-up-delay-2 mt-8">
-                <Link href="/projects" className="btn-brand no-underline">
-                  Explore my work <i className="bi bi-arrow-right" />
+              <p className="mt-2 mb-2 text-xl text-ink">{profile.headline}</p>
+              <p className="mb-0 max-w-2xl text-muted">{profile.shortDescription}</p>
+              <p className="mt-3 mb-0 max-w-2xl text-muted">{profile.objective}</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <a href={`mailto:${profile.email}`} className="btn-brand no-underline">
+                  Email Me
+                </a>
+                <a
+                  href={profile.resumePath}
+                  className="btn-outline-brand no-underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download Resume
+                </a>
+                <Link href="/about" className="btn-outline-brand no-underline">
+                  View Experience
                 </Link>
+              </div>
+            </div>
+
+            <div className="info-card p-4">
+              <h2 className="mb-3 text-xs font-bold tracking-wide text-muted uppercase">At a glance</h2>
+              <div className="grid gap-3 text-sm">
+                <div>
+                  <div className="text-muted">Education</div>
+                  <div className="font-semibold">{profile.educationShort}</div>
+                </div>
+                <div>
+                  <div className="text-muted">Recent role</div>
+                  <div className="font-semibold">ERP Data Encoder | System Accounting Staff</div>
+                  <div className="text-muted">Tomodachi Global Resources Inc.</div>
+                </div>
+                <div>
+                  <div className="text-muted">Location</div>
+                  <div className="font-semibold">{profile.location}</div>
+                </div>
+                <div>
+                  <div className="text-muted">Contact</div>
+                  <div className="font-semibold">
+                    <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                  </div>
+                  <div className="text-muted">{profile.phone}</div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="hero-diagonal hero-media relative min-h-[320px] bg-surface lg:min-h-full">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80"
-              alt="Bright modern workspace with clean desks and natural light"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-line py-16 md:py-20" id="projects">
-        <div className="container-wide">
-          <div className="mb-10 flex items-end justify-between gap-4">
-            <h2 className="m-0 font-serif text-sm font-medium tracking-[0.18em] uppercase">Featured projects</h2>
-            <Link href="/projects" className="link-arrow">
-              View all projects <i className="bi bi-arrow-right" />
-            </Link>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-3 md:gap-6">
-            {projects.map((project) => (
-              <Link
-                key={project.title}
-                href="/projects"
-                className="group block text-ink no-underline"
-              >
-                <div className="mb-4 aspect-[4/3] overflow-hidden bg-surface">
-                  {project.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="project-thumb h-full w-full object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center text-brand">
-                      <i className={`bi ${project.icon} text-3xl`} />
-                    </div>
-                  )}
+          <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {highlights.map(([icon, title, copy]) => (
+              <div key={title} className="stat-card flex items-start gap-3 p-[1.2rem]">
+                <div className="icon-wrap">
+                  <i className={`bi ${icon}`} />
                 </div>
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="m-0 font-serif text-xl font-medium tracking-wide uppercase">{project.title}</h3>
-                    <p className="mt-1 mb-0 text-sm text-muted">{project.sectionTitle}</p>
-                  </div>
-                  <span className="mt-1 text-[0.65rem] font-medium tracking-[0.14em] text-muted uppercase">
-                    {project.category}
-                  </span>
-                </div>
-                <div className="mt-4 flex justify-end text-brand transition group-hover:translate-x-1">
-                  <i className="bi bi-arrow-right" />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-line bg-cream-deep">
-        <div className="container-wide grid gap-10 py-16 md:grid-cols-[0.9fr_1.1fr] md:gap-14 md:py-20">
-          <div className="overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80"
-              alt="Quiet, organized interior workspace"
-              className="aspect-[4/5] h-full w-full object-cover md:aspect-auto md:min-h-[420px]"
-            />
-          </div>
-          <div className="plan-pattern flex flex-col justify-center py-4 md:py-8">
-            <p className="kicker mb-4">About me —</p>
-            <h2 className="mb-5 max-w-lg font-serif text-3xl font-medium tracking-tight text-ink md:text-4xl">
-              I work with clarity. I support with care.
-            </h2>
-            <p className="mb-8 max-w-lg text-sm leading-relaxed text-muted sm:text-base">
-              {profile.objective}
-            </p>
-            <Link href="/about" className="btn-outline-brand w-fit no-underline">
-              Learn more about me
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-line bg-cream">
-        <div className="container-wide">
-          <div className="grid grid-cols-2 divide-x divide-line md:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="px-4 py-10 text-center sm:px-6 md:py-12">
-                <div className="font-serif text-3xl font-medium tracking-tight text-ink md:text-4xl">{stat.value}</div>
-                <div className="mt-2 text-[0.65rem] font-medium tracking-[0.14em] text-muted uppercase">
-                  {stat.label}
+                <div>
+                  <div className="font-bold">{title}</div>
+                  <div className="text-sm text-muted">{copy}</div>
                 </div>
               </div>
             ))}
@@ -141,22 +97,152 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-b border-line py-16 md:py-20">
-        <div className="container-wide">
-          <h2 className="mb-12 font-serif text-sm font-medium tracking-[0.18em] uppercase">Capabilities —</h2>
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            {homeServices.map((service) => (
-              <article key={service.title} className="border-0 bg-transparent p-0">
-                <div className="icon-wrap mb-5">
-                  <i className={`bi ${service.icon}`} />
-                </div>
-                <h3 className="mb-3 font-serif text-xl font-medium tracking-wide">{service.title}</h3>
-                <p className="mb-5 text-sm leading-relaxed text-muted">{service.items[0]}</p>
-                <Link href="/services" className="link-arrow text-muted">
-                  Learn more <i className="bi bi-arrow-right" />
-                </Link>
+      <section className="py-16">
+        <div className="container-site">
+          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="kicker">Experience highlight</p>
+              <h2 className="m-0 font-serif text-3xl font-bold tracking-tight">Recent professional experience</h2>
+            </div>
+            <Link href="/about#experience" className="btn-outline-brand no-underline">
+              Full experience
+            </Link>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {experiences.slice(0, 2).map((experience) => (
+              <article key={experience.title} className="info-card h-full p-4">
+                <div className="font-bold">{experience.title}</div>
+                <div className="text-muted">{experience.organization}</div>
+                <div className="mb-3 text-sm text-muted">{experience.dates}</div>
+                <ul className="mb-0 ps-3 text-sm text-muted">
+                  {experience.highlights.slice(0, 3).map((highlight) => (
+                    <li key={highlight} className="mb-1">
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface py-16" id="availability">
+        <div className="container-site">
+          <p className="kicker">Roles I’m targeting</p>
+          <h2 className="mb-2 font-serif text-3xl font-bold tracking-tight">{profile.availabilityStatus}</h2>
+          <p className="mb-4 text-muted">
+            I am prepared to support structured office, data, and recruitment-admin workflows while learning your tools
+            and processes.
+          </p>
+          <div className="mb-4">
+            {profile.targetRoles.map((role) => (
+              <span key={role} className="skill-chip">
+                {role}
+              </span>
+            ))}
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="info-card h-full p-4">
+              <h3 className="mb-3 text-base font-bold">Core skills</h3>
+              <div>
+                {profile.coreSkills.map((skill) => (
+                  <span key={skill} className="skill-chip">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="info-card h-full p-4">
+              <h3 className="mb-3 text-base font-bold">Work setup</h3>
+              <ul className="mb-0 text-muted">
+                <li>On-site</li>
+                <li>Hybrid</li>
+                <li>Remote / virtual assistance</li>
+              </ul>
+            </div>
+            <div className="info-card h-full p-4">
+              <h3 className="mb-3 text-base font-bold">Availability</h3>
+              <p className="mb-1 text-muted">{profile.startDate}</p>
+              <p className="mb-1 text-muted">{profile.hoursPerWeek}</p>
+              <p className="mb-0 text-muted">Timezone: {profile.timezone}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="container-site">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <div>
+              <p className="kicker">Capabilities</p>
+              <h2 className="m-0 font-serif text-3xl font-bold tracking-tight">How I can support your team</h2>
+            </div>
+            <Link href="/services" className="btn-outline-brand hidden no-underline md:inline-flex">
+              All capabilities
+            </Link>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {services.slice(0, 6).map((service) => (
+              <ServiceCard key={service.title} {...service} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface py-16" id="projects">
+        <div className="container-site">
+          <div className="mb-4 flex items-end justify-between gap-4">
+            <div>
+              <p className="kicker">Selected work</p>
+              <h2 className="m-0 font-serif text-3xl font-bold tracking-tight">Projects</h2>
+            </div>
+            <Link href="/projects" className="btn-outline-brand hidden no-underline md:inline-flex">
+              All projects
+            </Link>
+          </div>
+          <p className="mb-8 max-w-3xl text-muted">
+            Featured items from Excel/admin samples, website work, and design.
+          </p>
+          <div className="grid gap-4 md:grid-cols-3">
+            {projects.map((project) => (
+              <div key={project.title}>
+                <div className="mb-2 flex items-center gap-2 text-sm text-muted">
+                  <i className={`bi ${project.sectionIcon}`} />
+                  <span className="font-semibold">{project.sectionTitle}</span>
+                </div>
+                <ProjectCard project={project} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pt-0 pb-16">
+        <div className="container-site">
+          <div className="cta-band flex flex-col items-start justify-between gap-3 lg:flex-row lg:items-center">
+            <div>
+              <p className="mb-1 text-sm text-[#cbb9a8]">Next step</p>
+              <h2 className="mb-2 font-serif text-2xl font-bold">Open to data encoding and administrative roles</h2>
+              <p className="mb-0">
+                If you need accurate encoding, organized records, and dependable office or virtual support, I would
+                welcome the chance to discuss how I can contribute.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <a
+                className="inline-flex items-center justify-center rounded-lg bg-cream px-[1.1rem] py-[0.6rem] text-sm font-semibold text-brand-dark no-underline"
+                href={`mailto:${profile.email}`}
+              >
+                Email Me
+              </a>
+              <Link
+                className="inline-flex items-center justify-center rounded-lg border border-[#cbb9a8] px-[1.1rem] py-[0.6rem] text-sm font-semibold text-cream no-underline hover:bg-white/12"
+                href="/resume"
+              >
+                View Resume
+              </Link>
+            </div>
           </div>
         </div>
       </section>

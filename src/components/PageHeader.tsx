@@ -7,12 +7,12 @@ type PageHeaderProps = {
 
 export function PageHeader({ kicker, title, description, children }: PageHeaderProps) {
   return (
-    <section className="topo-pattern border-b border-line pt-14 pb-12 md:pt-16 md:pb-14">
-      <div className="container-wide">
-        <p className="kicker kicker-rule">{kicker}</p>
-        <h1 className="mt-4 max-w-3xl font-serif text-4xl font-medium tracking-tight md:text-5xl">{title}</h1>
-        {description ? <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">{description}</p> : null}
-        {children ? <div className="mt-7">{children}</div> : null}
+    <section className="border-b border-line bg-cream-deep pt-[3.25rem] pb-9">
+      <div className="container-site">
+        <p className="kicker">{kicker}</p>
+        <h1 className="mt-2 font-serif text-4xl font-bold tracking-tight md:text-5xl">{title}</h1>
+        {description ? <p className="mt-3 max-w-3xl text-muted">{description}</p> : null}
+        {children}
       </div>
     </section>
   );

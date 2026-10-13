@@ -37,11 +37,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <>
-      <article className="project-card project-card-media group">
+      <article className="project-card project-card-media">
         {project.image ? (
           <button
             type="button"
-            className="relative block aspect-[3/2] w-full cursor-zoom-in overflow-hidden border-0 border-b border-line bg-surface p-0"
+            className="group relative block aspect-[3/2] w-full cursor-zoom-in overflow-hidden border-0 border-b border-line bg-surface p-0"
             onClick={() => setLightbox({ src: project.image!, alt: project.title })}
             aria-label={`View larger image: ${project.title}`}
           >
@@ -51,32 +51,31 @@ export function ProjectCard({ project }: ProjectCardProps) {
               alt={project.title}
               loading="lazy"
               decoding="async"
-              className="project-thumb block h-full w-full object-cover object-center"
+              className="block h-full w-full object-contain object-center"
             />
-            <span className="pointer-events-none absolute right-3 bottom-3 inline-flex h-8 w-8 items-center justify-center bg-brand text-sm text-cream opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
+            <span className="pointer-events-none absolute right-3 bottom-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-black/88 text-sm text-cream opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
               <i className="bi bi-zoom-in" />
             </span>
           </button>
         ) : null}
 
-        <div className="border border-t-0 border-line px-5 pt-5 pb-5">
+        <div className="px-[1.4rem] pt-5 pb-[1.4rem]">
           <div className="mb-3 flex items-start justify-between gap-3">
             <div className="icon-wrap">
               <i className={`bi ${project.icon}`} />
             </div>
             <div className="flex flex-wrap justify-end gap-1">
-              {practice ? <span className="skill-chip skill-chip-sample">Practice</span> : null}
+              {practice ? <span className="skill-chip skill-chip-sample">Practice Sample</span> : null}
               <span className="skill-chip">{project.category}</span>
               {project.status ? <span className="skill-chip">{project.status}</span> : null}
             </div>
           </div>
-          <h3 className="mb-2 font-serif text-xl font-medium tracking-wide">{project.title}</h3>
-          <p className="mb-2 text-sm leading-relaxed text-muted">{project.summary}</p>
-          <p className="mb-4 text-xs leading-relaxed text-muted">
-            <span className="font-medium tracking-[0.08em] text-ink uppercase">Outcome</span>
-            <span className="mt-1 block">{project.outcome}</span>
+          <h3 className="mb-2 font-serif text-lg font-bold">{project.title}</h3>
+          <p className="mb-2 text-sm text-muted">{project.summary}</p>
+          <p className="mb-3 text-[0.8rem] text-muted">
+            <strong>Outcome:</strong> {project.outcome}
           </p>
-          <div className="mb-4">
+          <div className="mb-3">
             {project.skills.map((skill) => (
               <span key={skill} className="skill-chip">
                 {skill}
@@ -90,7 +89,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              View project <i className="bi bi-box-arrow-up-right" />
+              View Project <i className="bi bi-box-arrow-up-right ml-1" />
             </a>
           ) : null}
         </div>
@@ -108,11 +107,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Project image preview"
-            className="relative z-[1] flex max-h-[calc(100vh-2.5rem)] w-full max-w-[960px] flex-col gap-3 border border-line bg-card p-4"
+            className="relative z-[1] flex w-full max-w-[960px] max-h-[calc(100vh-2.5rem)] flex-col gap-3 rounded-[14px] border border-line bg-card p-4 shadow-[0_18px_48px_rgba(18,18,18,0.28)]"
           >
             <button
               type="button"
-              className="absolute top-2.5 right-2.5 z-[2] inline-flex h-9 w-9 items-center justify-center border-0 bg-brand text-cream hover:bg-brand-dark"
+              className="absolute top-2.5 right-2.5 z-[2] inline-flex h-9 w-9 items-center justify-center rounded-full border-0 bg-brand-dark text-cream hover:bg-brand"
               aria-label="Close image preview"
               onClick={() => setLightbox(null)}
             >
@@ -122,9 +121,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <img
               src={lightbox.src}
               alt={lightbox.alt}
-              className="block max-h-[calc(100vh-8rem)] w-full bg-surface object-contain"
+              className="block max-h-[calc(100vh-8rem)] w-full rounded-lg bg-surface object-contain"
             />
-            <p className="m-0 text-center text-sm font-medium tracking-wide text-muted uppercase">{lightbox.alt}</p>
+            <p className="m-0 text-center text-[0.92rem] font-semibold text-muted">{lightbox.alt}</p>
           </div>
         </div>
       ) : null}

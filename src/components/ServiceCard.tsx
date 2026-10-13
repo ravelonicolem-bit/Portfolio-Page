@@ -7,14 +7,14 @@ type ServiceCardProps = {
 export function ServiceCard({ icon, title, items }: ServiceCardProps) {
   return (
     <article className="service-card">
-      <div className="icon-wrap mb-5">
+      <div className="icon-wrap mb-3">
         <i className={`bi ${icon}`} />
       </div>
-      <h3 className="mb-4 font-serif text-xl font-medium tracking-wide">{title}</h3>
-      <ul className="m-0 list-none p-0 text-sm text-muted">
+      <h3 className="mb-3 font-serif text-lg font-bold">{title}</h3>
+      <ul className="m-0 list-none p-0 text-muted">
         {items.map((item) => (
-          <li key={item} className="mb-2.5 flex gap-2.5 leading-relaxed">
-            <span className="mt-2 h-px w-3 flex-shrink-0 bg-brand" />
+          <li key={item} className="mb-2 flex gap-2">
+            <i className="bi bi-check2 text-brand" />
             <span>{item}</span>
           </li>
         ))}
