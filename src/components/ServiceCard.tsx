@@ -10,11 +10,11 @@ export function ServiceCard({ icon, title, items }: ServiceCardProps) {
       <div className="icon-wrap mb-5">
         <i className={`bi ${icon}`} />
       </div>
-      <h3 className="mb-4 font-serif text-xl font-medium tracking-wide">{title}</h3>
+      <h3 className="mb-4 text-xl font-bold tracking-tight">{title}</h3>
       <ul className="m-0 list-none p-0 text-sm text-muted">
         {items.map((item) => (
           <li key={item} className="mb-2.5 flex gap-2.5 leading-relaxed">
-            <span className="mt-2 h-px w-3 flex-shrink-0 bg-brand" />
+            <span className="mt-2 h-px w-3 flex-shrink-0 bg-ink" />
             <span>{item}</span>
           </li>
         ))}

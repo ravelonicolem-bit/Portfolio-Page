@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { featuredProjects, services } from "@/data/catalog";
+import { projectSections, services } from "@/data/catalog";
 import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
@@ -8,155 +8,251 @@ export const metadata: Metadata = {
 };
 
 const stats = [
-  { value: "ERP", label: "Data encoding experience" },
-  { value: "BS IT", label: "Information Technology" },
-  { value: "7+", label: "Target support roles" },
-  { value: "GMT+8", label: "Available to start soon" },
+  ["IT", "graduate with ERP encoding experience"],
+  ["2+", "professional roles in data & admin support"],
+  ["6+", "core capability areas ready to apply"],
+  ["100%", "focus on accuracy and organized delivery"],
 ] as const;
 
-const homeServices = services.slice(0, 4);
+const processSteps = [
+  {
+    icon: "bi-chat-dots",
+    title: "Free consultation",
+    copy: "We clarify the role, tools, and output you need so support starts with a clear brief.",
+  },
+  {
+    icon: "bi-search",
+    title: "Scope and preparation",
+    copy: "I review source files, naming rules, and workflows before encoding or documentation begins.",
+  },
+  {
+    icon: "bi-sliders",
+    title: "Accurate execution",
+    copy: "Data entry, records, and admin tasks are completed carefully against your established process.",
+  },
+  {
+    icon: "bi-file-earmark-check",
+    title: "Verification",
+    copy: "I check for missing fields, duplicates, formatting issues, and inconsistencies before handoff.",
+  },
+  {
+    icon: "bi-handshake",
+    title: "Organized delivery",
+    copy: "Files are named, filed, and returned ready for reporting, retrieval, or next-step coordination.",
+  },
+] as const;
+
+const catalogCards = [
+  {
+    key: "excel-sheets",
+    title: "Excel / Sheets",
+    count: `${projectSections.find((s) => s.key === "excel-sheets")?.projects.length ?? 0}+ samples`,
+    image: "/images/ui/catalog-office.jpg",
+  },
+  {
+    key: "website",
+    title: "Website",
+    count: `${projectSections.find((s) => s.key === "website")?.projects.length ?? 0}+ projects`,
+    image: "/images/ui/catalog-warehouse.jpg",
+  },
+  {
+    key: "design",
+    title: "Design",
+    count: `${projectSections.find((s) => s.key === "design")?.projects.length ?? 0}+ pieces`,
+    image: "/images/ui/catalog-land.jpg",
+  },
+];
+
+const trustMarks = ["Excel", "ERP", "MS Office", "Records", "HR Admin", "Remote VA"];
 
 export default function HomePage() {
-  const projects = featuredProjects();
-
   return (
     <>
-      <section className="relative min-h-[calc(100vh-4.25rem)] overflow-hidden border-b border-line">
-        <div className="grid min-h-[calc(100vh-4.25rem)] lg:grid-cols-2">
-          <div className="topo-pattern relative flex items-center px-6 py-16 sm:px-10 lg:px-14 xl:px-20">
-            <div className="max-w-xl">
-              <p className="kicker kicker-rule fade-up mb-8">Accuracy, crafted with intention.</p>
-              <h1 className="fade-up-delay font-serif text-4xl leading-[1.05] font-medium tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
-                Administrative support that elevates{" "}
-                <em className="not-italic text-[var(--accent-italic)] italic">work.</em>
-              </h1>
-              <p className="fade-up-delay-2 mt-6 max-w-md text-sm leading-relaxed text-muted sm:text-base">
-                {profile.shortDescription}
-              </p>
-              <div className="fade-up-delay-2 mt-8">
-                <Link href="/projects" className="btn-brand no-underline">
-                  Explore my work <i className="bi bi-arrow-right" />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="hero-diagonal hero-media relative min-h-[320px] bg-surface lg:min-h-full">
+      <section className="pb-6 pt-2 md:pb-8">
+        <div className="container-wide">
+          <div className="hero-panel hero-media">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80"
-              alt="Bright modern workspace with clean desks and natural light"
-              className="absolute inset-0 h-full w-full object-cover"
+              src="/images/ui/hero-architecture.jpg"
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover grayscale"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+            <div className="relative z-10 flex h-full min-h-[min(72vh,640px)] max-w-xl flex-col justify-end p-8 md:justify-center md:p-14 lg:p-16">
+              <span className="availability-badge mb-5 w-fit fade-up">
+                <span className="dot" />
+                {profile.availabilityBadge}
+              </span>
+              <h1 className="m-0 text-4xl font-extrabold tracking-tight text-white fade-up-delay md:text-5xl lg:text-6xl">
+                Support for data, admin, and office work
+              </h1>
+              <p className="mt-4 mb-0 max-w-md text-base leading-relaxed text-white/85 fade-up-delay-2">
+                Accurate encoding, organized records, and dependable administrative support for your team.
+              </p>
+              <div className="mt-7 fade-up-delay-2">
+                <a href={`mailto:${profile.email}`} className="btn-hero">
+                  Start cooperation
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-line py-16 md:py-20" id="projects">
+      <section className="py-16 md:py-24" id="about">
         <div className="container-wide">
-          <div className="mb-10 flex items-end justify-between gap-4">
-            <h2 className="m-0 font-serif text-sm font-medium tracking-[0.18em] uppercase">Featured projects</h2>
-            <Link href="/projects" className="link-arrow">
-              View all projects <i className="bi bi-arrow-right" />
-            </Link>
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+            <div>
+              <h2 className="m-0 text-4xl font-bold tracking-tight md:text-5xl">About Us</h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
+                {profile.fullName} is an IT graduate with hands-on ERP data encoding, administrative support, and
+                records verification experience. Since joining professional workflows, the focus has stayed on accuracy,
+                clean documentation, and reliable day-to-day office or virtual assistance.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-10">
+              {stats.map(([value, label]) => (
+                <div key={label}>
+                  <div className="text-4xl font-extrabold tracking-tight md:text-5xl">{value}</div>
+                  <div className="mt-2 text-sm leading-snug text-muted">{label}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3 md:gap-6">
-            {projects.map((project) => (
-              <Link
-                key={project.title}
-                href="/projects"
-                className="group block text-ink no-underline"
-              >
-                <div className="mb-4 aspect-[4/3] overflow-hidden bg-surface">
-                  {project.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="project-thumb h-full w-full object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center text-brand">
-                      <i className={`bi ${project.icon} text-3xl`} />
-                    </div>
-                  )}
-                </div>
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="m-0 font-serif text-xl font-medium tracking-wide uppercase">{project.title}</h3>
-                    <p className="mt-1 mb-0 text-sm text-muted">{project.sectionTitle}</p>
-                  </div>
-                  <span className="mt-1 text-[0.65rem] font-medium tracking-[0.14em] text-muted uppercase">
-                    {project.category}
-                  </span>
-                </div>
-                <div className="mt-4 flex justify-end text-brand transition group-hover:translate-x-1">
-                  <i className="bi bi-arrow-right" />
+          <div className="mt-14 flex flex-wrap items-center justify-between gap-6 border-y border-line py-8">
+            {trustMarks.map((mark) => (
+              <span key={mark} className="text-sm font-semibold tracking-[0.08em] text-[#b0b0b0] uppercase">
+                {mark}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-16 md:pb-24" id="catalog">
+        <div className="container-wide">
+          <div className="mb-8 max-w-xl">
+            <h2 className="m-0 text-4xl font-bold tracking-tight md:text-5xl">Work Catalog</h2>
+            <p className="mt-3 text-muted">A focused selection of spreadsheet, website, and design samples.</p>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {catalogCards.map((card) => (
+              <Link key={card.key} href={`/projects#${card.key}`} className="catalog-card">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={card.image} alt={card.title} />
+                <div className="px-1 pt-4">
+                  <div className="text-lg font-bold tracking-tight">{card.title}</div>
+                  <div className="mt-1 text-sm text-muted">{card.count}</div>
                 </div>
               </Link>
             ))}
           </div>
-        </div>
-      </section>
 
-      <section className="border-b border-line bg-cream-deep">
-        <div className="container-wide grid gap-10 py-16 md:grid-cols-[0.9fr_1.1fr] md:gap-14 md:py-20">
-          <div className="overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80"
-              alt="Quiet, organized interior workspace"
-              className="aspect-[4/5] h-full w-full object-cover md:aspect-auto md:min-h-[420px]"
-            />
-          </div>
-          <div className="plan-pattern flex flex-col justify-center py-4 md:py-8">
-            <p className="kicker mb-4">About me —</p>
-            <h2 className="mb-5 max-w-lg font-serif text-3xl font-medium tracking-tight text-ink md:text-4xl">
-              I work with clarity. I support with care.
-            </h2>
-            <p className="mb-8 max-w-lg text-sm leading-relaxed text-muted sm:text-base">
-              {profile.objective}
-            </p>
-            <Link href="/about" className="btn-outline-brand w-fit no-underline">
-              Learn more about me
+          <div className="mt-8 flex justify-end gap-2">
+            <Link href="/projects" className="carousel-btn carousel-btn-light no-underline" aria-label="Browse catalog">
+              <i className="bi bi-arrow-left" />
+            </Link>
+            <Link href="/projects" className="carousel-btn carousel-btn-dark no-underline" aria-label="Open projects">
+              <i className="bi bi-arrow-right" />
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-line bg-cream">
+      <section className="pb-16 md:pb-24" id="how-we-work">
         <div className="container-wide">
-          <div className="grid grid-cols-2 divide-x divide-line md:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="px-4 py-10 text-center sm:px-6 md:py-12">
-                <div className="font-serif text-3xl font-medium tracking-tight text-ink md:text-4xl">{stat.value}</div>
-                <div className="mt-2 text-[0.65rem] font-medium tracking-[0.14em] text-muted uppercase">
-                  {stat.label}
+          <div className="mb-10 max-w-xl">
+            <h2 className="m-0 text-4xl font-bold tracking-tight md:text-5xl">How we work</h2>
+            <p className="mt-3 text-muted">
+              The process stays simple and transparent from first brief to verified handoff.
+            </p>
+          </div>
+
+          <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <div className="relative overflow-hidden rounded-[var(--radius-xl)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/ui/process-building.jpg"
+                alt=""
+                className="block aspect-[3/4] w-full object-cover grayscale"
+              />
+              <div className="process-badge">Free consultation</div>
+            </div>
+
+            <div>
+              {processSteps.map((step, index) => (
+                <div
+                  key={step.title}
+                  className={`flex gap-4 py-6 ${index < processSteps.length - 1 ? "border-b border-line" : ""}`}
+                >
+                  <div className="icon-wrap mt-0.5">
+                    <i className={`bi ${step.icon}`} />
+                  </div>
+                  <div>
+                    <h3 className="m-0 text-lg font-bold tracking-tight">{step.title}</h3>
+                    <p className="mt-2 mb-0 text-sm leading-relaxed text-muted">{step.copy}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-16 md:pb-24">
+        <div className="container-wide">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <div>
+              <h2 className="m-0 text-4xl font-bold tracking-tight md:text-5xl">Capabilities</h2>
+              <p className="mt-3 text-muted">Practical support areas ready for office and remote teams.</p>
+            </div>
+            <Link href="/services" className="btn-outline-brand hidden no-underline md:inline-flex">
+              All capabilities
+            </Link>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {services.slice(0, 6).map((service) => (
+              <article key={service.title} className="service-card">
+                <div className="icon-wrap mb-5">
+                  <i className={`bi ${service.icon}`} />
+                </div>
+                <h3 className="mb-4 text-xl font-bold tracking-tight">{service.title}</h3>
+                <ul className="m-0 list-none p-0 text-sm text-muted">
+                  {service.items.slice(0, 3).map((item) => (
+                    <li key={item} className="mb-2.5 flex gap-2.5 leading-relaxed">
+                      <span className="mt-2 h-px w-3 flex-shrink-0 bg-ink" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-b border-line py-16 md:py-20">
+      <section className="pb-16 md:pb-24">
         <div className="container-wide">
-          <h2 className="mb-12 font-serif text-sm font-medium tracking-[0.18em] uppercase">Capabilities —</h2>
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            {homeServices.map((service) => (
-              <article key={service.title} className="border-0 bg-transparent p-0">
-                <div className="icon-wrap mb-5">
-                  <i className={`bi ${service.icon}`} />
-                </div>
-                <h3 className="mb-3 font-serif text-xl font-medium tracking-wide">{service.title}</h3>
-                <p className="mb-5 text-sm leading-relaxed text-muted">{service.items[0]}</p>
-                <Link href="/services" className="link-arrow text-muted">
-                  Learn more <i className="bi bi-arrow-right" />
-                </Link>
-              </article>
-            ))}
+          <div className="cta-band flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+            <div>
+              <h2 className="mb-2 text-3xl font-bold tracking-tight">Open to data encoding and administrative roles</h2>
+              <p className="mb-0 max-w-2xl text-white/75">
+                If you need accurate encoding, organized records, and dependable office or virtual support, let’s talk
+                about how I can contribute.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <a href={`mailto:${profile.email}`} className="btn-hero">
+                Email Me
+              </a>
+              <Link
+                href="/resume"
+                className="inline-flex items-center justify-center rounded-full border border-white/30 px-7 py-3.5 text-sm font-semibold text-white no-underline hover:bg-white/10"
+              >
+                View Resume
+              </Link>
+            </div>
           </div>
         </div>
       </section>

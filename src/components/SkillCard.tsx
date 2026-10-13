@@ -11,7 +11,7 @@ export function SkillCard({ icon, title, skills }: SkillCardProps) {
         <div className="icon-wrap">
           <i className={`bi ${icon}`} />
         </div>
-        <h3 className="m-0 font-serif text-xl font-medium tracking-wide">{title}</h3>
+        <h3 className="m-0 text-xl font-bold tracking-tight">{title}</h3>
       </div>
       <div>
         {skills.map((skill) => (

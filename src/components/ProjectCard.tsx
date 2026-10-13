@@ -41,7 +41,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {project.image ? (
           <button
             type="button"
-            className="relative block aspect-[3/2] w-full cursor-zoom-in overflow-hidden border-0 border-b border-line bg-surface p-0"
+            className="relative block aspect-[3/2] w-full cursor-zoom-in overflow-hidden rounded-[var(--radius-lg)] border-0 bg-surface p-0"
             onClick={() => setLightbox({ src: project.image!, alt: project.title })}
             aria-label={`View larger image: ${project.title}`}
           >
@@ -53,13 +53,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
               decoding="async"
               className="project-thumb block h-full w-full object-cover object-center"
             />
-            <span className="pointer-events-none absolute right-3 bottom-3 inline-flex h-8 w-8 items-center justify-center bg-brand text-sm text-cream opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
+            <span className="pointer-events-none absolute right-3 bottom-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-black/88 text-sm text-white opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
               <i className="bi bi-zoom-in" />
             </span>
           </button>
         ) : null}
 
-        <div className="border border-t-0 border-line px-5 pt-5 pb-5">
+        <div className="px-1 pt-5 pb-2">
           <div className="mb-3 flex items-start justify-between gap-3">
             <div className="icon-wrap">
               <i className={`bi ${project.icon}`} />
@@ -70,11 +70,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
               {project.status ? <span className="skill-chip">{project.status}</span> : null}
             </div>
           </div>
-          <h3 className="mb-2 font-serif text-xl font-medium tracking-wide">{project.title}</h3>
+          <h3 className="mb-2 text-xl font-bold tracking-tight">{project.title}</h3>
           <p className="mb-2 text-sm leading-relaxed text-muted">{project.summary}</p>
-          <p className="mb-4 text-xs leading-relaxed text-muted">
-            <span className="font-medium tracking-[0.08em] text-ink uppercase">Outcome</span>
-            <span className="mt-1 block">{project.outcome}</span>
+          <p className="mb-4 text-sm leading-relaxed text-muted">
+            <strong className="font-semibold text-ink">Outcome:</strong> {project.outcome}
           </p>
           <div className="mb-4">
             {project.skills.map((skill) => (
@@ -108,11 +107,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Project image preview"
-            className="relative z-[1] flex max-h-[calc(100vh-2.5rem)] w-full max-w-[960px] flex-col gap-3 border border-line bg-card p-4"
+            className="relative z-[1] flex max-h-[calc(100vh-2.5rem)] w-full max-w-[960px] flex-col gap-3 rounded-[var(--radius-lg)] border border-line bg-card p-4 shadow-[0_18px_48px_rgba(0,0,0,0.2)]"
           >
             <button
               type="button"
-              className="absolute top-2.5 right-2.5 z-[2] inline-flex h-9 w-9 items-center justify-center border-0 bg-brand text-cream hover:bg-brand-dark"
+              className="absolute top-2.5 right-2.5 z-[2] inline-flex h-9 w-9 items-center justify-center rounded-full border-0 bg-ink text-white hover:bg-black"
               aria-label="Close image preview"
               onClick={() => setLightbox(null)}
             >
@@ -122,9 +121,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <img
               src={lightbox.src}
               alt={lightbox.alt}
-              className="block max-h-[calc(100vh-8rem)] w-full bg-surface object-contain"
+              className="block max-h-[calc(100vh-8rem)] w-full rounded-xl bg-surface object-contain"
             />
-            <p className="m-0 text-center text-sm font-medium tracking-wide text-muted uppercase">{lightbox.alt}</p>
+            <p className="m-0 text-center text-sm font-semibold text-muted">{lightbox.alt}</p>
           </div>
         </div>
       ) : null}

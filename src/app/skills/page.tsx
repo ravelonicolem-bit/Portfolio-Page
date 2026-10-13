@@ -20,9 +20,7 @@ export default function SkillsPage() {
       <section className="py-16 md:py-20">
         <div className="container-wide">
           <div className="info-card mb-6 p-6">
-            <div className="mb-3 text-[0.65rem] font-medium tracking-[0.14em] text-muted uppercase">
-              Core competencies
-            </div>
+            <div className="mb-3 text-sm font-medium text-muted">Core competencies</div>
             {profile.coreSkills.map((skill) => (
               <span key={skill} className="skill-chip">
                 {skill}
