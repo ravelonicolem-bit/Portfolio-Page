@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Cormorant_Garamond, Outfit } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { profile } from "@/data/profile";
 import "./globals.css";
 
-const manrope = Manrope({
+const outfit = Outfit({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600"],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -21,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${manrope.variable} h-full antialiased`}>
+    <html lang="en" className={`${outfit.variable} ${cormorant.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
         <Navbar />
         <main className="relative z-[1] flex-1 overflow-hidden">{children}</main>

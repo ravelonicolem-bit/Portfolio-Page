@@ -36,7 +36,7 @@ export default function ContactPage() {
       <section className="py-16 md:py-20">
         <div className="container-wide grid gap-5 lg:grid-cols-[1.4fr_1fr]">
           <div className="info-card h-full p-6">
-            <h2 className="mb-4 text-xl font-bold tracking-tight">Contact details</h2>
+            <h2 className="mb-4 font-serif text-xl font-medium">Contact details</h2>
             <div className="grid gap-3 md:grid-cols-2">
               <div>
                 <p className="mb-2">
@@ -74,7 +74,7 @@ export default function ContactPage() {
           </div>
 
           <div className="info-card h-full p-6">
-            <h2 className="mb-4 text-xl font-bold tracking-tight">Roles of interest</h2>
+            <h2 className="mb-4 font-serif text-xl font-medium">Roles of interest</h2>
             <div className="mb-3">
               {profile.targetRoles.map((role) => (
                 <span key={role} className="skill-chip">

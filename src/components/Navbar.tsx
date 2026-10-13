@@ -6,34 +6,31 @@ import { useState } from "react";
 import { profile } from "@/data/profile";
 
 const links = [
-  { href: "/about", label: "About Us" },
-  { href: "/projects", label: "Catalog" },
-  { href: "/#how-we-work", label: "How We Work" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
   { href: "/services", label: "Capabilities" },
-  { href: "/contact", label: "Contacts" },
+  { href: "/skills", label: "Skills" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  const isActive = (href: string) => {
-    if (href.startsWith("/#")) return false;
-    return href === "/" ? pathname === "/" : pathname.startsWith(href);
-  };
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-[12px]">
-      <div className="container-wide flex items-center justify-between gap-4 py-5">
-        <Link href="/" className="flex items-center gap-3 no-underline">
-          <span className="brand-mark">NR</span>
-          <span className="leading-tight">
-            <span className="block text-[0.95rem] font-bold tracking-tight text-ink">{profile.displayName}</span>
-            <span className="block text-[0.72rem] text-muted">Professional Portfolio</span>
-          </span>
+    <nav className="sticky top-0 z-50 border-b border-line bg-cream/95 backdrop-blur-[12px]">
+      <div className="container-wide grid grid-cols-[1fr_auto] items-center gap-4 py-4 lg:grid-cols-[1fr_auto_1fr]">
+        <Link
+          href="/"
+          className="font-serif text-sm font-semibold tracking-[0.18em] text-ink uppercase no-underline md:text-base"
+        >
+          {profile.displayName}
         </Link>
 
-        <div className="hidden items-center gap-8 lg:flex">
+        <div className="hidden items-center gap-7 lg:flex">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -45,16 +42,27 @@ export function Navbar() {
           ))}
         </div>
 
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink lg:hidden"
-          aria-expanded={open}
-          aria-controls="primary-nav"
-          aria-label="Toggle menu"
-          onClick={() => setOpen((value) => !value)}
-        >
-          <i className={`bi ${open ? "bi-x-lg" : "bi-list"} text-lg`} />
-        </button>
+        <div className="flex items-center justify-end gap-4">
+          <Link
+            href="/resume"
+            className="nav-link hidden sm:inline-flex"
+          >
+            Resume
+          </Link>
+          <button
+            type="button"
+            className="inline-flex h-9 w-9 items-center justify-center border border-line text-ink lg:hidden"
+            aria-expanded={open}
+            aria-controls="primary-nav"
+            aria-label="Toggle menu"
+            onClick={() => setOpen((value) => !value)}
+          >
+            <i className={`bi ${open ? "bi-x-lg" : "bi-list"} text-lg`} />
+          </button>
+          <span className="hidden h-9 w-9 items-center justify-center border border-line text-ink lg:inline-flex" aria-hidden>
+            <i className="bi bi-list text-lg" />
+          </span>
+        </div>
       </div>
 
       <div
