@@ -20,13 +20,13 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader kicker="About Me" title={profile.fullName} description={profile.headline}>
-        <p className="mt-2 max-w-3xl font-semibold">{profile.tagline}</p>
+        <p className="mt-2 max-w-3xl text-sm tracking-[0.04em] text-muted uppercase">{profile.tagline}</p>
       </PageHeader>
 
-      <section className="py-16">
-        <div className="container-site grid gap-8 lg:grid-cols-[1.4fr_1fr] xl:gap-12">
+      <section className="py-16 md:py-20">
+        <div className="container-wide grid gap-10 lg:grid-cols-[1.4fr_1fr] xl:gap-14">
           <div>
-            <h2 className="font-serif text-xl font-bold">Who I am</h2>
+            <h2 className="font-serif text-2xl font-medium">Who I am</h2>
             <p className="text-muted">
               I am an IT graduate from Cavite State University – Silang Campus with practical experience in ERP data
               encoding, administrative support, and records verification. I work carefully with large volumes of
@@ -39,7 +39,7 @@ export default function AboutPage() {
             </p>
             <p className="mb-0 text-muted">{profile.objective}</p>
 
-            <h2 className="mt-12 font-serif text-xl font-bold" id="experience">
+            <h2 className="mt-12 font-serif text-2xl font-medium" id="experience">
               Professional experience
             </h2>
             <div className="grid gap-3">
@@ -66,7 +66,7 @@ export default function AboutPage() {
               ))}
             </div>
 
-            <h2 className="mt-12 font-serif text-xl font-bold">My IT background</h2>
+            <h2 className="mt-12 font-serif text-2xl font-medium">My IT background</h2>
             <p className="text-muted">
               My Information Technology background is an advantage in administrative and data-related work. Modern
               offices rely on computers, spreadsheets, databases, digital documents, and online systems. My education and
@@ -78,7 +78,7 @@ export default function AboutPage() {
               technical support — where administrative and technical responsibilities often overlap.
             </p>
 
-            <h2 className="mt-12 font-serif text-xl font-bold">My work process</h2>
+            <h2 className="mt-12 font-serif text-2xl font-medium">My work process</h2>
             <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
               {processSteps.map(([step, title, copy]) => (
                 <div key={step} className="info-card h-full p-3">
@@ -93,7 +93,7 @@ export default function AboutPage() {
 
           <div className="grid gap-4 self-start">
             <aside className="info-card p-4">
-              <h2 className="mb-3 font-serif text-lg font-bold">Profile details</h2>
+              <h2 className="mb-3 font-serif text-xl font-medium">Profile details</h2>
               <div className="grid gap-3 text-sm">
                 <div>
                   <div className="text-muted">Name</div>
@@ -124,7 +124,7 @@ export default function AboutPage() {
             </aside>
 
             <aside className="info-card p-4">
-              <h2 className="mb-3 font-serif text-lg font-bold">Roles I’m targeting</h2>
+              <h2 className="mb-3 font-serif text-xl font-medium">Roles I’m targeting</h2>
               <div className="mb-3">
                 {profile.targetRoles.map((role) => (
                   <span key={role} className="skill-chip">
