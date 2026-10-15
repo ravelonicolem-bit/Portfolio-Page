@@ -272,17 +272,18 @@ export const projectSections: ProjectSection[] = [
         title: "PACAI Website",
         category: "Website",
         type: "work",
-        status: "Client · Under Development",
+        status: "Client · Live",
         image: "/images/projects/pacai-website.png",
         imageAlt: "PACAI website homepage layout screenshot",
         summary:
           "Building the Philippine Association of Collection Agencies site with membership CTAs, agency verification, and a member overview layout.",
         outcome:
-          "Gives PACAI a professional public presence while membership and verification features are still in development.",
+          "Gives PACAI a professional public presence while membership and verification features continue to develop.",
         skills: ["Web design", "Frontend", "Corporate UI"],
-        url: null,
-        verifyUrl: "/images/projects/pacai-website.png",
-        verifyLabel: "View / Verify screenshot",
+        url: "https://mediumseagreen-duck-823790.hostingersite.com/",
+        urlLabel: "Visit live site",
+        verifyUrl: "https://mediumseagreen-duck-823790.hostingersite.com/",
+        verifyLabel: "Visit live site",
       },
       {
         title: "Crochet Cloude",
