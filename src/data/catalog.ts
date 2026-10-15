@@ -310,21 +310,6 @@ export const projectSections: ProjectSection[] = [
         verifyLabel: "Visit live site",
       },
       {
-        title: "Self-Study Tracker",
-        category: "Website",
-        type: "work",
-        status: "Self Project",
-        image: "/images/projects/self-study-tracker.png",
-        imageAlt: "Self-study tracker dashboard with calendar and task list",
-        summary:
-          "Personal study dashboard with daily progress, streak tracking, a study calendar, and a task list saved locally in the browser.",
-        outcome: "Makes daily study habits easier to track with a clean calendar and task workflow.",
-        skills: ["Dashboard UI", "JavaScript", "Local storage"],
-        url: null,
-        verifyUrl: "/images/projects/self-study-tracker.png",
-        verifyLabel: "View / Verify screenshot",
-      },
-      {
         title: "Inventory Management System",
         category: "Website / App",
         type: "work",
@@ -397,6 +382,20 @@ export const projectSections: ProjectSection[] = [
         outcome: "Shows collage layout, masking, and promotional poster design.",
         skills: ["Photoshop", "Illustrator", "Product poster"],
         verifyUrl: "/images/projects/bmw-m4-poster.jpg",
+        verifyLabel: "View / Verify artwork",
+      },
+      {
+        title: "Porsche 911 Poster",
+        category: "Design",
+        type: "work",
+        image: "/images/projects/porsche-911-poster.jpg",
+        imageAlt:
+          "Graphic design poster of a purple and white Porsche 911 with multi-angle detail panels and minimalist typography",
+        summary:
+          "Automotive poster with a lavender palette, layered detail panels, and clean Porsche 911 typography over a full vehicle cutout.",
+        outcome: "Shows color harmony, panel composition, and promotional automotive poster design.",
+        skills: ["Photoshop", "Illustrator", "Product poster"],
+        verifyUrl: "/images/projects/porsche-911-poster.jpg",
         verifyLabel: "View / Verify artwork",
       },
     ],
