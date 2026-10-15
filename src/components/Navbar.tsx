@@ -48,8 +48,8 @@ export function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur-[8px]">
-      <div className="container-site flex flex-wrap items-center justify-between gap-3 py-3">
+    <div className="nav-shell">
+      <nav className="nav-inner">
         <Link href="/#top" className="flex items-center gap-2 text-base font-semibold text-ink no-underline">
           <span className="brand-mark">NR</span>
           <span>{profile.displayName}</span>
@@ -57,7 +57,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="rounded-md border border-line px-3 py-2 text-sm font-medium text-ink lg:hidden"
+          className="rounded-full border border-line px-3 py-2 text-sm font-medium text-ink lg:hidden"
           aria-expanded={open}
           aria-controls="primary-nav"
           onClick={() => setOpen((value) => !value)}
@@ -67,7 +67,7 @@ export function Navbar() {
 
         <div
           id="primary-nav"
-          className={`${open ? "flex" : "hidden"} w-full flex-col gap-1 pb-2 lg:flex lg:w-auto lg:flex-row lg:items-center lg:gap-0.5 lg:pb-0`}
+          className={`${open ? "flex" : "hidden"} w-full flex-col gap-1 pb-1 lg:flex lg:w-auto lg:flex-row lg:items-center lg:gap-0.5 lg:pb-0`}
         >
           {navLinks.map((link) =>
             link.type === "page" ? (
@@ -94,7 +94,7 @@ export function Navbar() {
             Contact Me
           </Link>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }

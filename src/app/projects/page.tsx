@@ -13,28 +13,30 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <div>
-      <section className="border-b border-line bg-gradient-to-b from-slate-soft to-white py-12 md:py-16">
-        <div className="container-site max-w-3xl">
-          <p className="mb-2 text-sm font-semibold tracking-wide text-accent uppercase">Projects</p>
-          <h1 className="m-0 text-3xl font-bold tracking-tight text-navy md:text-4xl">My Work</h1>
-          <p className="mt-3 mb-0 text-muted">
-            Excel and admin samples come first for Office Staff and Data Encoder roles. Website and design
-            pieces are additional skills only. Use <span className="font-medium text-ink">View / Verify</span>{" "}
-            on any project to open the sample.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#excel-admin" className="btn-secondary btn-sm">
-              Excel &amp; Admin
-            </a>
-            <a href="#website" className="btn-secondary btn-sm">
-              Website
-            </a>
-            <a href="#design" className="btn-secondary btn-sm">
-              Design
-            </a>
-            <Link href="/#contact" className="btn-primary btn-sm">
-              Contact Me
-            </Link>
+      <section className="page-pad">
+        <div className="hero-shell !py-12 md:!py-16">
+          <div className="hero-content !max-w-2xl">
+            <p className="hero-chip mb-4">Projects</p>
+            <h1 className="m-0 text-3xl font-bold tracking-tight text-ink md:text-5xl">My Work</h1>
+            <p className="mt-4 mb-0 text-muted">
+              Excel and admin samples come first for Office Staff and Data Encoder roles. Website and design
+              pieces are additional skills only. Use <span className="font-medium text-ink">View / Verify</span>{" "}
+              on any project to open the sample.
+            </p>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+              <a href="#excel-admin" className="btn-secondary btn-sm">
+                Excel &amp; Admin
+              </a>
+              <a href="#website" className="btn-secondary btn-sm">
+                Website
+              </a>
+              <a href="#design" className="btn-secondary btn-sm">
+                Design
+              </a>
+              <Link href="/#contact" className="btn-primary btn-sm">
+                Contact Me
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -57,7 +59,7 @@ export default function ProjectsPage() {
                 return (
                   <article
                     key={project.title}
-                    className={`overflow-hidden rounded-md border border-line bg-white ${
+                    className={`project-surface ${
                       hasGallery ? "" : "sm:grid sm:grid-cols-2 sm:items-stretch"
                     }`}
                   >

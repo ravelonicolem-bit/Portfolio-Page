@@ -4,6 +4,8 @@ export type Experience = {
   assignment?: string;
   dates: string;
   dateNote?: string;
+  /** Optional badge, e.g. "Additional skill" for secondary roles. */
+  tag?: string;
   highlights: string[];
 };
 
@@ -70,6 +72,9 @@ export type EducationItem = {
   details?: string;
   pdfHref?: string;
   pdfLabel?: string;
+  /** Optional preview image for diplomas / certificates. */
+  imageHref?: string;
+  imageAlt?: string;
 };
 
 export const experiences: Experience[] = [
@@ -85,7 +90,9 @@ export const experiences: Experience[] = [
       "Reconciled stock levels with production and warehouse teams to keep inventory aligned with active manufacturing schedules.",
       "Generated ERP reports for planning and verified about 20 production and accounting records daily, completing checks before final submission.",
       "Coordinated with production and warehouse contacts on stock discrepancies and encoding updates to reduce delayed corrections.",
-      "[PLACEHOLDER: ERP modules/transactions handled, accuracy rate if measured separately, additional verification or reconciliation steps]",
+      "Used TIPTOP ERP for data encoding, record updates, and inventory/stock maintenance across production transactions.",
+      "Maintained 95–98% data-entry accuracy at 55–58 WPM while completing daily encoding and verification checks.",
+      "Verified encoded data against source documents — quantities, amounts, and item codes — then corrected errors or reported discrepancies for resolution.",
     ],
   },
   {
@@ -98,16 +105,15 @@ export const experiences: Experience[] = [
       "Verified Transcript of Records (TORs) and related documents for completeness and consistency before release or archive.",
       "Updated digital files and folders so staff could retrieve records without searching through unstructured storage.",
       "Supported basic system troubleshooting, workstation and printer setup, and first-level user support for day-to-day school operations.",
-      "[PLACEHOLDER: daily/weekly volume of records processed, if available]",
     ],
   },
   {
     title: "Freelance Web Developer",
     organization: "Self-employed (two-person team)",
     dates: "February 2024 – Present",
+    tag: "Additional skill",
     highlights: [
       "Built an inventory management system using Laravel, PHP, and Tailwind CSS as a secondary technical skill alongside office and encoding work.",
-      "[PLACEHOLDER: one additional client outcome or tech detail, optional — keep brief]",
     ],
   },
 ];
@@ -118,7 +124,7 @@ export const skillGroups: SkillGroup[] = [
     relevance: "primary",
     skills: [
       "Microsoft Excel (VLOOKUP, INDEX-MATCH, pivot tables, data validation)",
-      "Google Sheets",
+      "Google (Gmail/Outlook, Sheets, Docs, Drive, Calendar, Forms, Meet, Chat)",
       "ERP systems",
       "Data encoding and verification",
       "Records management",
@@ -412,12 +418,28 @@ export const educationItems: EducationItem[] = [
 
 export const trainings: EducationItem[] = [
   {
-    title: "BS Information Technology — Diploma / Certificate",
+    title: "BS Information Technology — Diploma",
     organization: "Cavite State University – Silang Campus",
-    dates: "September 2025",
-    details: "Official diploma / certificate of graduation.",
-    pdfHref: "/files/Ravelo_Nicole_Certificate.pdf",
-    pdfLabel: "View certificate (PDF)",
+    dates: "August 28, 2025",
+    details:
+      "Official diploma conferred by Cavite State University – Silang Campus for Bachelor of Science in Information Technology.",
+    pdfHref: "/files/Ravelo_Nicole_Diploma.jpg",
+    pdfLabel: "View diploma",
+    imageHref: "/files/Ravelo_Nicole_Diploma.jpg",
+    imageAlt:
+      "Cavite State University diploma for Nicole M. Ravelo, Bachelor of Science in Information Technology, dated August 28, 2025",
+  },
+  {
+    title: "Certificate of Completion — Installing and Configuring Computer Systems",
+    organization: "TESDA · National Institute for Technical Education and Skills Development",
+    dates: "November 7, 2025",
+    details:
+      "TESDA Certificate of Completion for Installing and Configuring Computer Systems (NITESD, Taguig City).",
+    pdfHref: "/files/COC.png",
+    pdfLabel: "View certificate",
+    imageHref: "/files/COC.png",
+    imageAlt:
+      "TESDA Certificate of Completion awarded to Nicole Ravelo for Installing and Configuring Computer Systems, dated November 7, 2025",
   },
 ];
 
