@@ -1,58 +1,91 @@
-import { profile } from "./profile";
-
 export type Experience = {
   title: string;
   organization: string;
   assignment?: string;
   dates: string;
+  dateNote?: string;
   highlights: string[];
 };
 
-export type Service = {
-  icon: string;
+export type SkillGroup = {
   title: string;
-  items: string[];
+  relevance: "primary" | "secondary" | "minor";
+  skills: string[];
+  proof?: string[];
 };
 
-export type SkillGroup = {
-  icon: string;
+export type WorkSample = {
   title: string;
-  skills: string[];
+  image: string;
+  imageAlt: string;
+  downloadHref: string;
+  downloadLabel: string;
+  task: string;
+  process: string;
+  result: string;
+};
+
+export type ProjectGalleryImage = {
+  src: string;
+  alt: string;
+  label: string;
 };
 
 export type Project = {
-  icon: string;
   title: string;
   category: string;
   type: "practice" | "work";
-  image?: string;
   status?: string;
-  url?: string | null;
+  image: string;
+  imageAlt: string;
   summary: string;
   outcome: string;
   skills: string[];
-  sectionTitle?: string;
-  sectionIcon?: string;
+  /** Live site, Google Sheet, or external proof link (opens in new tab). */
+  url?: string | null;
+  urlLabel?: string;
+  /** Always set so recruiters can open the sample and verify. Defaults to image. */
+  verifyUrl: string;
+  verifyLabel?: string;
+  downloadHref?: string;
+  downloadLabel?: string;
+  /** Optional before-file (e.g. raw .xlsx) for before/after verification. */
+  beforeFileHref?: string;
+  beforeFileLabel?: string;
+  /** Extra screenshots shown in a grid + carousel viewer. */
+  gallery?: ProjectGalleryImage[];
 };
 
 export type ProjectSection = {
   key: string;
   title: string;
-  icon: string;
   description: string;
   projects: Project[];
 };
 
+export type EducationItem = {
+  title: string;
+  organization: string;
+  dates: string;
+  details?: string;
+  pdfHref?: string;
+  pdfLabel?: string;
+};
+
 export const experiences: Experience[] = [
   {
-    title: "ERP Data Encoder | System Accounting Staff",
+    title: "ERP Data Encoder / System Accounting Staff",
     organization: "Tomodachi Global Resources Inc.",
     assignment: "Assigned to CyberPower Systems Manufacturing Inc.",
     dates: "December 2025 – May 2026",
+    dateNote:
+      "Dates reflect the agency assignment period with Tomodachi Global Resources Inc.",
     highlights: [
-      "Maintained real-time inventory data and encoded accurate Bills of Materials (BOM) for UPS manufacturing in the ERP system.",
-      "Reconciled stock levels with production and warehouse teams to align inventory with active manufacturing schedules.",
-      "Generated ERP reports for planning and verified about 20 production and accounting records daily with 100% accuracy.",
+      "Encoded Bills of Materials (BOM) and maintained inventory data in the ERP system for UPS manufacturing so production teams worked from current records.",
+      "Reconciled stock levels with production and warehouse teams to keep inventory aligned with active manufacturing schedules.",
+      "Generated ERP reports for planning and verified about 20 production and accounting records daily, completing checks before final submission.",
+      "Coordinated with production and warehouse contacts on stock discrepancies and encoding updates to reduce delayed corrections.",
+      "[PLACEHOLDER: ERP modules/transactions handled, accuracy rate if measured separately, additional verification or reconciliation steps]",
     ],
   },
   {
@@ -61,305 +94,331 @@ export const experiences: Experience[] = [
     assignment: "Registrar’s Office & ICT Department",
     dates: "February 26, 2025 – June 16, 2025",
     highlights: [
-      "Processed and verified administrative and technical records with 100% accuracy, streamlining digital documentation and file accessibility.",
-      "Assisted with software updates, hardware troubleshooting, and continuous system monitoring to support daily operations.",
-      "Managed setup, configuration, and maintenance of workstations, printers, and network connections for staff.",
-      "Provided first-level technical support, helping reduce IT issue resolution times for team members.",
-    ],
-  },
-];
-
-export const services: Service[] = [
-  {
-    icon: "bi-keyboard",
-    title: "Data Entry & Encoding",
-    items: [
-      "Encode and update records in spreadsheets and office systems",
-      "Maintain structured data with consistent formatting",
-      "Support ERP-style encoding and inventory-related data tasks",
-      "Follow required templates, fields, and instructions carefully",
+      "Encoded and updated student and administrative records, then verified entries against source documents before filing.",
+      "Verified Transcript of Records (TORs) and related documents for completeness and consistency before release or archive.",
+      "Updated digital files and folders so staff could retrieve records without searching through unstructured storage.",
+      "Supported basic system troubleshooting, workstation and printer setup, and first-level user support for day-to-day school operations.",
+      "[PLACEHOLDER: daily/weekly volume of records processed, if available]",
     ],
   },
   {
-    icon: "bi-check2-square",
-    title: "Data Verification & Cleaning",
-    items: [
-      "Check for missing, inconsistent, or duplicate entries",
-      "Validate records before final submission",
-      "Reconcile data against source documents",
-      "Prepare clean, review-ready files",
-    ],
-  },
-  {
-    icon: "bi-folder2-open",
-    title: "Records & Document Management",
-    items: [
-      "Organize digital and physical files",
-      "Apply clear naming and folder structures",
-      "Update and retrieve documents efficiently",
-      "Support confidential handling of records",
-    ],
-  },
-  {
-    icon: "bi-briefcase",
-    title: "Administrative & Office Support",
-    items: [
-      "Prepare documents, forms, and basic reports",
-      "Track tasks, deadlines, and follow-ups",
-      "Assist with day-to-day office coordination",
-      "Communicate clearly with teams and stakeholders",
-    ],
-  },
-  {
-    icon: "bi-people",
-    title: "HR & Recruitment Support",
-    items: [
-      "Organize resumes and applicant files",
-      "Update candidate trackers and status logs",
-      "Assist with interview scheduling notes",
-      "Maintain recruitment documentation for review",
-    ],
-  },
-  {
-    icon: "bi-laptop",
-    title: "Virtual Assistance",
-    items: [
-      "Remote data entry and spreadsheet updates",
-      "Inbox and document organization support",
-      "Schedule and task list coordination",
-      "Clear written updates on assigned work",
+    title: "Freelance Web Developer",
+    organization: "Self-employed (two-person team)",
+    dates: "February 2024 – Present",
+    highlights: [
+      "Built an inventory management system using Laravel, PHP, and Tailwind CSS as a secondary technical skill alongside office and encoding work.",
+      "[PLACEHOLDER: one additional client outcome or tech detail, optional — keep brief]",
     ],
   },
 ];
 
 export const skillGroups: SkillGroup[] = [
   {
-    icon: "bi-database",
-    title: "Data & Records",
+    title: "Data & Office (Primary)",
+    relevance: "primary",
     skills: [
-      "Data Entry",
-      "Data Encoding",
-      "Data Verification",
-      "Data Cleaning",
-      "ERP Data Encoding",
-      "Records Management",
-      "File Organization",
-      "Typing 50+ WPM",
-    ],
-  },
-  {
-    icon: "bi-briefcase",
-    title: "Administrative Support",
-    skills: [
-      "Document Preparation",
-      "Report Generation",
-      "Task Tracking",
-      "Administrative Assistance",
-      "Document Handling",
-      "Office Coordination",
-    ],
-  },
-  {
-    icon: "bi-people",
-    title: "HR / Recruitment Support",
-    skills: [
-      "Applicant File Organization",
-      "Candidate Tracking",
-      "Interview Scheduling Support",
-      "Recruitment Documentation",
-      "Confidentiality",
-    ],
-  },
-  {
-    icon: "bi-file-earmark-spreadsheet",
-    title: "Tools & Productivity",
-    skills: [
-      "Microsoft Excel",
+      "Microsoft Excel (VLOOKUP, INDEX-MATCH, pivot tables, data validation)",
       "Google Sheets",
-      "Microsoft Word",
-      "Google Docs",
-      "Microsoft Office",
-      "Windows",
+      "ERP systems",
+      "Data encoding and verification",
+      "Records management",
+      "Filing",
+    ],
+    proof: [
+      "Typing: 55–58 WPM · 95–98% accuracy (Monkeytype screenshots in Quick Facts)",
+      "Work samples: Cleaned Orders Table; Job Tracker; Data Encoding & Verification Batch",
     ],
   },
   {
-    icon: "bi-pc-display",
-    title: "Technical Support",
+    title: "Technical Extras (Secondary)",
+    relevance: "secondary",
     skills: [
-      "Basic Troubleshooting",
-      "Software Installation",
-      "Computer Maintenance",
-      "Printer Support",
-      "Basic Networking",
+      "IT support / troubleshooting",
+      "MySQL",
+      "SQLite",
+      "MongoDB",
+      "Python",
+      "PHP / Laravel",
+      "JavaScript",
+      "HTML / CSS",
+      "React",
+      "Git / GitHub",
     ],
   },
   {
-    icon: "bi-person-check",
-    title: "Professional Strengths",
-    skills: [
-      "Attention to Detail",
-      "Organization",
-      "Accuracy",
-      "Time Management",
-      "Team Collaboration",
-      "Adaptability",
-    ],
+    title: "Design Tools (Minor)",
+    relevance: "minor",
+    skills: ["Canva", "Photoshop", "Illustrator", "CapCut"],
+  },
+];
+
+export const workSamples: WorkSample[] = [
+  {
+    title: "Data Encoding & Verification Batch",
+    image: "/images/projects/Encode.png",
+    imageAlt:
+      "Screenshot of a sanitized Excel dashboard showing encoding batches, status, and verified versus pending records",
+    downloadHref: "/images/projects/Encode.png",
+    downloadLabel: "Download sample screenshot",
+    task: "Practice sample: encode a batch of records into a structured sheet and mark each row as verified or pending without using real company or student data.",
+    process:
+      "Received a sanitized source list → reviewed required fields → encoded entries in Excel → checked for blanks, duplicates, and inconsistent formats → flagged pending items for follow-up → updated batch status on a simple dashboard.",
+    result:
+      "Produces a clear verified-versus-pending view so a supervisor can see what is ready and what still needs correction before submission.",
   },
 ];
 
 export const projectSections: ProjectSection[] = [
   {
-    key: "excel-sheets",
-    title: "Excel / Sheets",
-    icon: "bi-file-earmark-spreadsheet",
+    key: "excel-admin",
+    title: "Excel & Admin Samples",
     description:
-      "Practice spreadsheet samples for encoding, verification, reporting, and file organization. Clearly labeled as practice work.",
+      "Primary samples for data encoding, verification, and tracking. Sanitized practice work — no real company or student data.",
     projects: [
       {
-        icon: "bi-table",
-        title: "Data Encoding & Verification",
+        title: "Cleaned Orders Table",
+        category: "Excel / Google Sheets",
+        type: "practice",
+        status: "Practice sample · Before / After",
+        image: "/images/projects/cleaned-orders/after-clean-data.png",
+        imageAlt: "Cleaned orders table in Excel with verified and incomplete records marked",
+        summary:
+          "Practice data-cleaning sample: started from a messy orders workbook (missing regions, inconsistent category and payment labels, misspelled Quantity header, incomplete totals), then cleaned and summarized the file for review.",
+        outcome:
+          "Produced a cleaned orders table with Incomplete Record flags where data was missing, plus Category and Region pivot charts for quick verification of 300 order rows.",
+        skills: [
+          "Data Cleaning",
+          "Data Verification",
+          "Microsoft Excel",
+          "Google Sheets",
+          "Pivot Tables",
+          "Charts",
+        ],
+        url: "https://docs.google.com/spreadsheets/d/1BCZUvAdOPQaYa8kDgjDWhGbulqlL-o4AuPQRh8nBgR8/edit?usp=sharing",
+        urlLabel: "View cleaned sheet (Google Sheets)",
+        verifyUrl:
+          "https://docs.google.com/spreadsheets/d/1BCZUvAdOPQaYa8kDgjDWhGbulqlL-o4AuPQRh8nBgR8/edit?usp=sharing",
+        verifyLabel: "View / Verify cleaned data",
+        beforeFileHref: "/files/samples/orders_table.xlsx",
+        beforeFileLabel: "Download before file (.xlsx)",
+        downloadHref: "/files/samples/orders_table.xlsx",
+        downloadLabel: "Download before (.xlsx)",
+        gallery: [
+          {
+            src: "/images/projects/cleaned-orders/before-raw-data.png",
+            alt: "Before: raw practice sales data with missing values and inconsistent labels",
+            label: "Before — raw data",
+          },
+          {
+            src: "/images/projects/cleaned-orders/after-clean-data.png",
+            alt: "After: cleaned orders table with Incomplete Record flags",
+            label: "After — cleaned data",
+          },
+          {
+            src: "/images/projects/cleaned-orders/category-chart.png",
+            alt: "Pivot chart showing total sales by category",
+            label: "Category chart",
+          },
+          {
+            src: "/images/projects/cleaned-orders/region-chart.png",
+            alt: "Pivot chart showing total sales by region",
+            label: "Region chart",
+          },
+        ],
+      },
+      {
+        title: "Job Tracker",
+        category: "Google Sheets",
+        type: "practice",
+        status: "Personal admin tracker",
+        image: "/images/projects/job-tracker.jpg",
+        imageAlt:
+          "Job Tracker dashboard with application charts, status summaries, and a sortable applications table",
+        summary:
+          "Google Sheets job hunt tracker that logs position, company, application source, status, date applied, and salary range, with simple status progress summaries.",
+        outcome:
+          "Keeps applications organized so follow-ups and status checks are easy to review without searching through emails or notes.",
+        skills: ["Google Sheets", "Records Management", "Task Tracking", "Data Organization"],
+        url: "https://docs.google.com/spreadsheets/d/1zz6xgIIEa_qXw5q3pLiQ7kt1HQ06bdclI4odP3ALLtQ/edit?usp=sharing",
+        urlLabel: "View Job Tracker (Google Sheets)",
+        verifyUrl:
+          "https://docs.google.com/spreadsheets/d/1zz6xgIIEa_qXw5q3pLiQ7kt1HQ06bdclI4odP3ALLtQ/edit?usp=sharing",
+        verifyLabel: "View / Verify Job Tracker",
+      },
+      {
+        title: "Data Encoding & Verification Batch",
         category: "Excel / Sheets",
         type: "practice",
         image: "/images/projects/Encode.png",
+        imageAlt: "Excel dashboard for encoding batches with verified and pending status",
         summary:
-          "Practice sample: structured encoding and verification for missing information, inconsistent entries, duplicates, and formatting issues.",
+          "Structured encoding and verification workflow for missing information, inconsistent entries, duplicates, and formatting issues.",
         outcome:
-          "Shows a clear workflow: Receive Data → Review → Encode → Verify → Clean & Organize → Final Review.",
-        skills: ["Data Entry", "Data Verification", "Data Cleaning", "Excel", "Record Management"],
-      },
-      {
-        icon: "bi-bar-chart",
-        title: "Weekly Administrative Report",
-        category: "Excel / Sheets",
-        type: "practice",
-        image: "/images/projects/Report.png",
-        summary:
-          "Practice sample: organizes completed, pending, and ongoing tasks for progress monitoring and follow-up.",
-        outcome: "Provides a clear weekly summary of administrative activities and document-related tasks.",
-        skills: ["Microsoft Excel", "Reporting", "Task Tracking", "Data Organization"],
-      },
-      {
-        icon: "bi-folder2-open",
-        title: "Records Management & File Organization",
-        category: "Excel / Sheets",
-        type: "practice",
-        image: "/images/projects/Tracker.png",
-        summary:
-          "Practice sample: structured folders and naming convention such as SURNAME_DOCUMENT_TYPE_DATE.",
-        outcome: "Makes digital records easier to access, update, and retrieve in shared office files.",
-        skills: ["File Organization", "Records Management", "Documentation", "Attention to Detail"],
+          "Shows Receive → Review → Encode → Verify → Clean → Final Review so a supervisor can see verified vs pending records.",
+        skills: ["Data Entry", "Data Verification", "Excel", "Record Management"],
+        verifyUrl: "/images/projects/Encode.png",
+        verifyLabel: "View / Verify sample",
+        downloadHref: "/images/projects/Encode.png",
       },
     ],
   },
   {
     key: "website",
-    title: "Website",
-    icon: "bi-globe2",
-    description: "Client and self-built web projects with clear layouts, product flows, and practical UI.",
+    title: "Website (Additional Skill)",
+    description:
+      "Secondary technical work. Useful as proof of system thinking and tool familiarity — not the primary job target.",
     projects: [
       {
-        icon: "bi-building",
         title: "PACAI Website",
         category: "Website",
-        status: "Client · Under Development",
         type: "work",
+        status: "Client · Under Development",
         image: "/images/projects/pacai-website.png",
-        url: profile.projectUrls.pacai || null,
+        imageAlt: "PACAI website homepage layout screenshot",
         summary:
-          "Building the Philippine Association of Collection Agencies site with membership CTAs, agency verification, and a member overview dashboard.",
+          "Building the Philippine Association of Collection Agencies site with membership CTAs, agency verification, and a member overview layout.",
         outcome:
-          "Gives PACAI a professional public presence while membership and verification features are still being developed for the client.",
-        skills: ["Web design", "Frontend", "Corporate UI", "Dashboard layout"],
+          "Gives PACAI a professional public presence while membership and verification features are still in development.",
+        skills: ["Web design", "Frontend", "Corporate UI"],
+        url: null,
+        verifyUrl: "/images/projects/pacai-website.png",
+        verifyLabel: "View / Verify screenshot",
       },
       {
-        icon: "bi-flower2",
         title: "Crochet Cloude",
         category: "Website",
-        status: "Self Project · Not Deployed",
         type: "work",
+        status: "Self Project · Live",
         image: "/images/projects/crochet-cloude.png",
-        url: profile.projectUrls.crochet_cloude || null,
+        imageAlt: "Crochet Cloude small-business website concept screenshot",
         summary:
-          "Personal project for a small-business website concept: organizing business information, planning content, designing UI, and building the front-end structure.",
+          "Personal project for a small-business site: organizing business information, planning content, designing UI, and building the front-end structure.",
         outcome:
-          "Demonstrates content organization, information management, UI design, and front-end development for a simple user-friendly experience.",
-        skills: ["Content Organization", "UI Design", "HTML", "CSS", "JavaScript"],
+          "Demonstrates content organization, information management, and front-end structure for a simple user-friendly experience.",
+        skills: ["Content Organization", "UI Design", "Next.js", "Tailwind CSS"],
+        url: "https://crochet-landing-page-gray.vercel.app/",
+        verifyUrl: "/images/projects/crochet-cloude.png",
+        verifyLabel: "View / Verify screenshot",
       },
       {
-        icon: "bi-journal-check",
         title: "Self-Study Tracker",
         category: "Website",
-        status: "Self Project",
         type: "work",
+        status: "Self Project",
         image: "/images/projects/self-study-tracker.png",
-        url: profile.projectUrls.self_study_tracker || null,
+        imageAlt: "Self-study tracker dashboard with calendar and task list",
         summary:
-          "Built a personal study dashboard with daily progress, streak tracking, a study calendar, and a task list saved locally in the browser.",
+          "Personal study dashboard with daily progress, streak tracking, a study calendar, and a task list saved locally in the browser.",
         outcome: "Makes daily study habits easier to track with a clean calendar and task workflow.",
-        skills: ["Dashboard UI", "JavaScript", "Local storage", "Habit tracking"],
+        skills: ["Dashboard UI", "JavaScript", "Local storage"],
+        url: null,
+        verifyUrl: "/images/projects/self-study-tracker.png",
+        verifyLabel: "View / Verify screenshot",
+      },
+      {
+        title: "Inventory Management System",
+        category: "Website / App",
+        type: "work",
+        status: "Freelance · Two-person team",
+        image: "/images/projects/inventory-data-entry.png",
+        imageAlt: "Inventory management system related data entry interface",
+        summary:
+          "Built an inventory management system using Laravel, PHP, and Tailwind CSS as freelance work with a two-person team.",
+        outcome:
+          "Supports structured inventory records and day-to-day operational data entry for the client workflow.",
+        skills: ["Laravel", "PHP", "Tailwind CSS", "MySQL"],
+        url: null,
+        verifyUrl: "/images/projects/inventory-data-entry.png",
+        verifyLabel: "View / Verify screenshot",
       },
     ],
   },
   {
     key: "design",
-    title: "Design",
-    icon: "bi-palette",
+    title: "Design (Minor)",
     description: "Poster and composite artwork created in Photoshop and Illustrator.",
     projects: [
       {
-        icon: "bi-flower1",
         title: "Delphinidin Blue-Tulip Poster",
         category: "Design",
         type: "work",
         image: "/images/projects/delphinidin-tulip.png",
+        imageAlt: "Vertical tulip poster with typography and clipping-mask treatment",
         summary:
-          "Designed a vertical poster with elegant script typography and a clipping-mask treatment that reveals a tulip field through bold TULIP letterforms.",
-        outcome: "Showcases typography, masking, and photo composition skills in Photoshop and Illustrator.",
-        skills: ["Photoshop", "Illustrator", "Typography", "Clipping masks"],
+          "Vertical poster with script typography and a clipping-mask treatment that reveals a tulip field through bold letterforms.",
+        outcome: "Shows typography, masking, and photo composition skills in Photoshop and Illustrator.",
+        skills: ["Photoshop", "Illustrator", "Typography"],
+        verifyUrl: "/images/projects/delphinidin-tulip.png",
+        verifyLabel: "View / Verify artwork",
       },
       {
-        icon: "bi-car-front",
         title: "Vintage Automotive Poster",
         category: "Design",
         type: "work",
         image: "/images/projects/vintage-poster.jpg",
+        imageAlt: "Retro automotive poster with classic station wagon",
         summary:
-          "Created a retro-styled poster featuring a classic station wagon with outlined VINTAGE type, barcode accent, and warm golden-hour color grading.",
+          "Retro-styled poster featuring a classic station wagon with outlined type, barcode accent, and warm color grading.",
         outcome: "Demonstrates brand-style layout, photo treatment, and clean typographic overlays.",
-        skills: ["Photoshop", "Illustrator", "Color grading", "Layout"],
+        skills: ["Photoshop", "Illustrator", "Layout"],
+        verifyUrl: "/images/projects/vintage-poster.jpg",
+        verifyLabel: "View / Verify artwork",
       },
       {
-        icon: "bi-book",
         title: "Storybook Forest Composite",
         category: "Design",
         type: "work",
         image: "/images/projects/storybook-forest.jpg",
+        imageAlt: "Open book composited into a sunlit forest scene",
         summary:
-          "Composited an open book into a sunlit forest scene, with a painterly ocean narrative illustrated across the pages.",
-        outcome: "Highlights advanced photo compositing, lighting, and storytelling visuals.",
-        skills: ["Photoshop", "Compositing", "Lighting", "Visual storytelling"],
+          "Composited an open book into a sunlit forest scene, with a painterly narrative illustrated across the pages.",
+        outcome: "Highlights photo compositing, lighting, and visual storytelling.",
+        skills: ["Photoshop", "Compositing", "Lighting"],
+        verifyUrl: "/images/projects/storybook-forest.jpg",
+        verifyLabel: "View / Verify artwork",
       },
       {
-        icon: "bi-speedometer2",
         title: "BMW M4 Poster",
         category: "Design",
         type: "work",
         image: "/images/projects/bmw-m4-poster.jpg",
+        imageAlt: "Dynamic BMW M4 automotive poster with collage layout",
         summary:
-          "Built a dynamic automotive poster with diagonal photo panels, outlined BMW type, and a sharp vehicle cutout over a clean product footer.",
-        outcome: "Shows collage layout, masking, and promotional poster design for product visuals.",
-        skills: ["Photoshop", "Illustrator", "Collage layout", "Product poster"],
+          "Dynamic automotive poster with diagonal photo panels, outlined type, and a sharp vehicle cutout over a clean product footer.",
+        outcome: "Shows collage layout, masking, and promotional poster design.",
+        skills: ["Photoshop", "Illustrator", "Product poster"],
+        verifyUrl: "/images/projects/bmw-m4-poster.jpg",
+        verifyLabel: "View / Verify artwork",
       },
     ],
   },
 ];
 
-export function featuredProjects(): Project[] {
-  return projectSections
-    .filter((section) => section.projects[0])
-    .map((section) => ({
-      ...section.projects[0],
-      sectionTitle: section.title,
-      sectionIcon: section.icon,
-    }));
-}
+export const educationItems: EducationItem[] = [
+  {
+    title: "Bachelor of Science in Information Technology",
+    organization: "Cavite State University – Silang Campus",
+    dates: "Graduated September 2025",
+  },
+];
+
+export const trainings: EducationItem[] = [
+  {
+    title: "BS Information Technology — Diploma / Certificate",
+    organization: "Cavite State University – Silang Campus",
+    dates: "September 2025",
+    details: "Official diploma / certificate of graduation.",
+    pdfHref: "/files/Ravelo_Nicole_Certificate.pdf",
+    pdfLabel: "View certificate (PDF)",
+  },
+];
+
+export const navLinks = [
+  { href: "/#quick-facts", label: "Quick Facts", type: "hash" as const },
+  { href: "/#about", label: "About", type: "hash" as const },
+  { href: "/#experience", label: "Experience", type: "hash" as const },
+  { href: "/#skills", label: "Skills", type: "hash" as const },
+  { href: "/projects", label: "Projects", type: "page" as const },
+  { href: "/#education", label: "Education", type: "hash" as const },
+  { href: "/#contact", label: "Contact", type: "hash" as const },
+] as const;

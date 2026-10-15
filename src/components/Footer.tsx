@@ -5,72 +5,30 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative z-[2] clear-both bg-brand-dark px-0 pt-[3.25rem] pb-6 text-[#d9cfc3]">
+    <footer className="border-t border-line bg-navy-dark px-0 pt-10 pb-6 text-slate-soft">
       <div className="container-site">
-        <div className="grid gap-8 pb-8 md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr]">
+        <div className="grid gap-8 pb-8 md:grid-cols-2">
           <div>
-            <h6 className="mb-2 font-serif text-base font-bold text-cream">{profile.fullName}</h6>
-            <p className="mb-2 text-sm">{profile.headline}</p>
-            <p className="mb-0 text-sm">{profile.shortDescription}</p>
+            <h2 className="mb-2 text-base font-semibold text-white">{profile.fullName}</h2>
+            <p className="mb-0 text-sm text-[#c5d0de]">{profile.headline}</p>
+            <p className="mt-3 mb-0 text-sm">
+              <Link href="/projects" className="text-[#e8eef5] no-underline hover:underline">
+                View projects
+              </Link>
+            </p>
           </div>
-          <div>
-            <h6 className="mb-3 font-serif text-base font-bold text-cream">Quick links</h6>
-            <ul className="grid gap-2 text-sm">
-              <li>
-                <Link href="/about" className="text-[#efe6dc] no-underline hover:text-white">
-                  About & experience
-                </Link>
-              </li>
-              <li>
-                <Link href="/skills" className="text-[#efe6dc] no-underline hover:text-white">
-                  Skills
-                </Link>
-              </li>
-              <li>
-                <Link href="/projects" className="text-[#efe6dc] no-underline hover:text-white">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <a
-                  href={profile.resumePath}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#efe6dc] no-underline hover:text-white"
-                >
-                  Download resume
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h6 className="mb-3 font-serif text-base font-bold text-cream">Contact</h6>
-            <ul className="grid gap-2 text-sm">
-              <li>
-                <i className="bi bi-envelope me-2 mr-2" />
-                <a href={`mailto:${profile.email}`} className="text-[#efe6dc] no-underline hover:text-white">
-                  {profile.email}
-                </a>
-              </li>
-              <li>
-                <i className="bi bi-telephone me-2 mr-2" />
-                {profile.phone}
-              </li>
-              <li>
-                <i className="bi bi-geo-alt me-2 mr-2" />
-                {profile.location}
-              </li>
-              <li>
-                <i className="bi bi-clock me-2 mr-2" />
-                {profile.availabilityStatus}
-              </li>
-            </ul>
+          <div className="text-sm md:text-right">
+            <p className="mb-1">
+              <a href={`mailto:${profile.email}`} className="text-[#e8eef5] no-underline hover:underline">
+                {profile.email}
+              </a>
+            </p>
+            <p className="mb-1 text-[#c5d0de]">{profile.phone}</p>
+            <p className="mb-0 text-[#c5d0de]">{profile.location}</p>
           </div>
         </div>
-        <div className="flex flex-col justify-between gap-2 border-t border-white/20 pt-3 text-sm md:flex-row">
-          <span>
-            &copy; {year} {profile.fullName}. All rights reserved.
-          </span>
+        <div className="border-t border-white/15 pt-3 text-sm text-[#9aabbe]">
+          &copy; {year} {profile.fullName}. For professional hiring use only.
         </div>
       </div>
     </footer>
